@@ -1,0 +1,34 @@
+@media screen and (max-width: 1680px) {
+    .accordion-item-title[aria-expanded="false"]::before, .accordion-item-title[aria-expanded="true"]::before, .uk-open>.uk-accordion-title::before {
+        content: unset;
+        text-align: center;
+    }
+}
+@media screen and (max-width: 898px) {
+    .main__right__content ul {
+        justify-content: start;
+    }
+    .main__item {
+        flex-basis: 300px;
+    }
+}
+@media screen and (max-width: 818px) {
+    .main__item {
+        flex-basis: 180px;
+    }
+}
+@media screen and (max-width: 772px) {
+    .main__item {
+        flex-basis: 250px;
+    }
+}
+@media screen and (max-width: 716px) {
+    .main__item {
+        flex-basis: 370px;
+    }
+}
+@media screen and (max-width: 590px) {
+    .main {
+        padding-right: 30px;
+    }
+}
