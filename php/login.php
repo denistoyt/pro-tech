@@ -6,7 +6,6 @@
         if($_GET['login'] != "" and $_GET['password'] != "") {
             $login = $_GET['login'];
             $password = md5($_GET['password']);
-
             $request = "SELECT * FROM `users` WHERE `user_login` = ? and `user_pass` = ?";
             $request_execute = $pdo->prepare($request);
             $request_execute->execute(array("$login", "$password"));

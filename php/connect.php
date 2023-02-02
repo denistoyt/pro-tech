@@ -1,8 +1,8 @@
 <?
 	$host = 'localhost';
 	$db = 'shop';
-	$user = 'denisto';
-	$pass = '2754';
+	$user = 'root';
+	$pass = '';
 	$charset = 'utf8';
 	$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 	$opt = array(

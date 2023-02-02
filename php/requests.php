@@ -16,7 +16,7 @@
                     $type = "Смартфон";
                 };
                 echo '
-                <li class="main__item" data-type="'.$arr["item_category"].'" data-itemid ="'.$arr['id_item'].'">
+                <li class="main__item" data-type="'.$arr["item_category"].'" data-itemid ="'.$arr['id_item'].'" data-cost="'.$arr['item_cost'].'" data-vendor="'.$arr['item_vendor'].'">
                     <a href="#item_'.$arr['id_item'].'_info-modal" class="main__item-card-link" uk-toggle>
                         <img src="'.$arr["item_img"].'" alt="'.$arr["item_img_alt"].'">
                         '.$arr["item_name"].'
@@ -49,8 +49,14 @@
                 </li>';
             }
             else {
+                if($arr['item_category'] == "laptop") {
+                    $type = "Ноутбук";
+                }
+                else if($arr['item_category'] == "phone") {
+                    $type = "Смартфон";
+                };
                 echo '
-                <li class="main__item" data-type="'.$arr["item_category"].'" data-itemid ="'.$arr['id_item'].'">
+                <li class="main__item" data-type="'.$arr["item_category"].'" data-itemid ="'.$arr['id_item'].'" data-cost="'.$arr['item_cost'].'" data-vendor="'.$arr['item_vendor'].'">
                     <a href="#item_'.$arr['id_item'].'_info-modal" class="main__item-card-link" uk-toggle>
                         <img src="'.$arr["item_img"].'" alt="'.$arr["item_img_alt"].'">
                         '.$arr["item_name"].'

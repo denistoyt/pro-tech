@@ -14,12 +14,11 @@
             <div class="header__company__container">
                 <a href="#"><img src="../img/logo.png" alt="logo">Интернет-магазин</a>
             </div>
-        <?} if($_SERVER['REQUEST_URI'] == "/index.php"){?>
+        <?} if($_SERVER['REQUEST_URI'] == "/index.php" || $_SERVER['REQUEST_URI'] == "/"){?>
             <div class="header__controls__container">
                 <label for="searchField">Поиск по</label>
                 <input type="text" class="header__controls_search" id="searchField">
-                <button>модели ноутбука</button>
-                <button>модели телефона</button>
+                <button class="search-btn"><img src="../icn/search.png" alt="search-btn"></button>
             </div>
         <?} else {?>
             <div class="header__controls__container"></div>
@@ -34,11 +33,11 @@
                 </div>
             <?} else {?>
                 <div class="header__right-logo">
-                    <a href="#" uk-toggle="target: #cartModal" data-cart="not_autorized"><img src="../icn/cart.png" alt="cart" title="Корзина"></a>
+                    <a href="#" uk-toggle="target: #cartModal" data-cart="not_autorized"><img src="../icn/cart.png" alt="cart" title="Корзина"><span class="uk-badge cart__items_count__badge" hidden></span></a>
                     <span class="cart__summ" hidden></span>
                     <!-- cart modal -->
                     <div id="cartModal" uk-offcanvas="flip: true; overlay: true;" class="cart__modal-container">
-                        <div class="uk-offcanvas-bar cart__modal">
+                        <div class="uk-offcanvas-bar cart__modal" data-neworder = "">
                             <button class="uk-offcanvas-close" type="button" uk-close></button>
                             <h3 class="cart__title">Корзина</h3>
                             <h2 class="cart__null-message">Корзина пуста! Для добавления товаров, нужно авторизоваться!</h2>
@@ -67,11 +66,11 @@
         <div class="header__right__container">
             <? if($_SESSION['autorized'] == true) {?>
                 <div class="header__right-logo">
-                    <a href="#" uk-toggle="target: #cartModal" data-cart="autorized"><img src="../icn/cart.png" alt="cart" title="Корзина"></a>
+                    <a href="#" uk-toggle="target: #cartModal" data-cart="autorized"><img src="../icn/cart.png" alt="cart" title="Корзина"><span class="uk-badge cart__items_count__badge" hidden></span></a>
                     <span class="cart__summ" hidden></span>
                     <!-- cart modal -->
                     <div id="cartModal" uk-offcanvas="flip: true; overlay: true;" class="cart__modal-container">
-                        <div class="uk-offcanvas-bar cart__modal">
+                        <div class="uk-offcanvas-bar cart__modal" data-neworder = "">
                             <button class="uk-offcanvas-close" type="button" uk-close></button>
                             <h3 class="cart__title">Корзина</h3>
                             <div class="cart__items-container">
@@ -88,11 +87,11 @@
                 </div>
             <?} else {?>
                 <div class="header__right-logo">
-                    <a href="#" uk-toggle="target: #cartModal" data-cart="not_autorized"><img src="../icn/cart.png" alt="cart" title="Корзина"></a>
+                    <a href="#" uk-toggle="target: #cartModal" data-cart="not_autorized"><img src="../icn/cart.png" alt="cart" title="Корзина"><span class="uk-badge cart__items_count__badge" hidden></span></a>
                     <span class="cart__summ" hidden></span>
                     <!-- cart modal -->
                     <div id="cartModal" uk-offcanvas="flip: true; overlay: true;" class="cart__modal-container">
-                        <div class="uk-offcanvas-bar cart__modal">
+                        <div class="uk-offcanvas-bar cart__modal" data-neworder = "">
                             <button class="uk-offcanvas-close" type="button" uk-close></button>
                             <h3 class="cart__title">Корзина</h3>
                             <h2 class="cart__null-message">Корзина пуста! Для добавления товаров, нужно авторизоваться!</h2>
