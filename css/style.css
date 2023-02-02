@@ -3,15 +3,20 @@
     margin: 0;
     box-sizing: border-box;
 }
+input {
+    outline: none!important;
+}
 body {
     position: relative;
     min-height: 100vh;
     background: #f5f4f4;
+    min-width: 530px;
 }
 button {
     border: none;
     background: transparent;
     cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
 }
 a {
     text-decoration: none;
@@ -25,6 +30,10 @@ a:hover {
 }
 ul, li {
     list-style: none;
+    font-family: 'Montserrat', sans-serif;
+}
+label, input {
+    font-family: 'Montserrat', sans-serif;
 }
 /* header */
 header {
@@ -50,14 +59,17 @@ header {
     font: 500 .875em 'Montserrat', sans-serif;
     line-height: 1.6;
 }
-.header__controls__container button {
+.search-btn {
     border-radius: 4px;
     background: #ccccff;
     padding: 2px 10px;
     transition: all .6s ease;
 }
-.header__controls__container button:hover {
+.search-btn:hover {
     background: #8080bd;
+}
+.search-btn img {
+    width: 20px;
 }
 .header__company__container {
     display: flex;
@@ -96,6 +108,9 @@ header {
 .header__right-logo a img {
     width: 60px;
 }
+.header__right-logo a {
+    position: relative;
+}
 .header__right-controls {
     display: flex;
     gap: 20px;
@@ -126,6 +141,12 @@ header {
 }
 .cart-btn img {
     width: 100%;
+}
+.cart__items_count__badge {
+    position: absolute;
+    top: 5px;
+    right: -7px;
+    border: 2px solid #fff;
 }
 .main__item {
     border-radius: 5px;
@@ -190,11 +211,27 @@ header {
     font-size: .875em;
     gap: 5px;
 }
+.cost-between-filter li{
+    padding: 5px 10px!important;
+}
+.cost-between-filter li:nth-child(1) label,.cost-between-filter li:nth-child(2) label{
+    font-size: .875em;
+}
+.cost-between-search-btn {
+    width: 100%;
+    height: 100%;
+}
 .main__left__type-filter li {
     background: #ccccff;
     padding: 0 10px;
     text-align: center;
     border-radius: 10px;
+}
+.cost-between-search-inp {
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(128, 128, 128, .5);
 }
 .accordion-item {
     background: #ebebeb;
@@ -221,6 +258,20 @@ header {
     column-gap: 15px;
     row-gap: 20px;
     max-width: 1480px;
+}
+.main__right__sorting-container {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.sorting__type-change-btn {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    background: #ccccff;
+    border-radius: 4px;
 }
 /* footer */
 footer {
@@ -355,14 +406,12 @@ label[for="userPhoto"] span:nth-child(2){
 .profile__right__side {
     justify-self: center;
     margin: 0 auto;
+    padding-bottom: 40px;
 }
 .profile__left__side-controls {
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
-.profile__left__side-controls li:first-child a{
-    font-weight: 600;
 }
 .profile__left__side-controls li:last-child a{
     width: fit-content;
@@ -370,6 +419,9 @@ label[for="userPhoto"] span:nth-child(2){
     gap: 10px;
     height: 25px;
     align-items: center;
+}
+.profile__left__side-controls li.uk-active a {
+    font-weight: 600!important;
 }
 .user__orders__count {
     align-self: start;
@@ -400,6 +452,43 @@ label[for="userPhoto"] span:nth-child(2){
     text-align: center;
     font-weight: 500;
     font-size: 1.25em;
+}
+.profile__orders__section-container {
+    padding: 20px;
+    background: #ccccff;
+    border-radius: 4px;
+    max-width: 1140px;
+    min-width: 1000px;
+    margin-bottom: 20px;
+}
+.profile__orders__section-container:last-child {
+    margin-bottom: 0;
+}
+.profile__orders__content-item {
+    padding: 20px;
+    background: #dce1f7;
+    border-radius: 8px;
+}
+.profile__orders-number {
+    font-size: 1.125em;
+    font-weight: 600;
+}
+.profile__orders__item-img {
+    display: flex;
+    align-items: center;
+}
+.profile__orders__item-img img {
+    max-width: 150px;
+}
+.profile__orders__content-item, .profile__orders__item-info, .profile__orders__content {
+    display: flex;
+    gap: 10px;
+}
+.profile__orders__item-info, .profile__orders__content {
+    flex-direction: column;
+}
+.profile__orders__item-info {
+    justify-content: center;
 }
 /* 
     SHOPPING CART
@@ -565,6 +654,14 @@ body::-webkit-scrollbar-thumb, .cart__items-container::-webkit-scrollbar-thumb {
         transform: translateX(0);
     }
 }
+@keyframes spinnerRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 /* 
     ITEM MODAL
 */
@@ -594,4 +691,71 @@ body::-webkit-scrollbar-thumb, .cart__items-container::-webkit-scrollbar-thumb {
 }
 .catalog-item__modal_info-content li {
     padding: 10px;
+}
+
+/* 
+    CONFIRM ORDER SPINNER
+*/
+.cart_order_confirm-fade {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background: rgba(235, 235, 235, .6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.confirm-fade-spinner {
+    width: 40px;
+    height: 40px;
+    background: url("../icn/loading.png") center / cover no-repeat;
+    border-radius: 50%;
+    animation: spinnerRotate 1s infinite;
+}
+/* 
+    DEVICE SEARCH WITH SELECTED VENDOR
+*/
+input[type=radio] {
+    display: none;
+}
+.device_vendor-filter__items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.device_vendor-filter__items li:first-child {
+    font-size: .875em;
+    color: #333333;
+    font-weight: 500;
+    padding-left: 10px;
+}
+.device_vendor-filter__item label{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    word-break: break-all;
+    cursor: pointer;
+	position: relative;
+    font-size: .875em;
+}
+.device_vendor-filter__item label::before {
+    content: "";
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url("../icn/selecting-not-select.png") center / cover no-repeat;
+    border-radius: 50%;
+    max-width: 120px;
+    transition: all .6s ease;
+}
+.device_vendor-filter__item input[type=radio]:checked + label::before {
+	background: url("../icn/selecting-select.png") center / cover no-repeat;
+}
+.device_vendor-filter__item label:hover:before {
+	scale: 110%;
 }

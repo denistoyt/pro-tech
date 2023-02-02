@@ -4,6 +4,14 @@
         text-align: center;
     }
 }
+@media screen and (max-width: 1100px) {
+    .catalog-item__modal-info-wrapper {
+        flex-direction: column;
+    }
+    .catalog-item__modal_info-image {
+        margin: 0 auto;
+    }
+}
 @media screen and (max-width: 898px) {
     .main__right__content ul {
         justify-content: start;
